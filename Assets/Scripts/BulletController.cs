@@ -15,9 +15,20 @@ public class BulletController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        currentPosition = new Vector2(transform.position.x, transform.position.y);
+       
+    }
 
-        if (currentPosition.x - startPosition.x > distance || currentPosition.y - startPosition.y > distance)
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Map"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Map"))
         {
             Destroy(gameObject);
         }

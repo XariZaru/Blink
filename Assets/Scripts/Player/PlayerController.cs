@@ -7,7 +7,7 @@ public class PlayerController : NetworkBehaviour {
 
     public GameObject bulletPrefab;
     float speed = .2f;
-    float bulletSpeed = 100.0f;
+    float bulletSpeed = 75.0f;
     float fireRate = 0.25f;
     float lastShot = 0.0f;
    
