@@ -8,7 +8,7 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     float speed = .2f;
     float bulletSpeed = 100.0f;
-    float fireRate = 0.5f;
+    float fireRate = 0.25f;
     float lastShot = 0.0f;
    
 
@@ -46,16 +46,37 @@ public class PlayerController : NetworkBehaviour {
                 GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, Quaternion.identity);
                 projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
                 lastShot = Time.time;
-            }
-            
+            } 
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+
         }
     }
 
     void FixedUpdate()
     {
-        
+
 
     }
-    
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        float xDistance = other.gameObject.transform.position.x - gameObject.transform.position.x;
+        float yDistance = other.gameObject.transform.position.y - gameObject.transform.position.y;
+        float collideDistance = 1;
+
+        if (other.gameObject.CompareTag("Bullet") && xDistance > collideDistance && yDistance > collideDistance)
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
 

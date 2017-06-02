@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212488480305873912}
   - component: {fileID: 114494664282638844}
   - component: {fileID: 114487776167996912}
-  - component: {fileID: 114500072067929532}
   - component: {fileID: 61129864853775456}
+  - component: {fileID: 50018985246106126}
+  - component: {fileID: 114500072067929532}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -44,6 +45,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50018985246106126
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784868987517160}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61129864853775456
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -133,6 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3da1c9b2f1ae2a4888071cdc711fa48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1048656585395812, guid: cadaa4f889d6cde468531baa0636167a,
+    type: 2}
 --- !u!212 &212488480305873912
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -162,8 +185,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 244319647
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce90ada5de06a0242802ba5dc21f800f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
