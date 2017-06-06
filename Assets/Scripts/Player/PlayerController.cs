@@ -47,6 +47,9 @@ public class PlayerController : NetworkBehaviour {
             {                
                 Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
                 GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, Quaternion.identity);
+
+                Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
                 projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
                 lastShot = Time.time;
             } 
@@ -96,7 +99,7 @@ public class PlayerController : NetworkBehaviour {
         float yDistance = other.gameObject.transform.position.y - gameObject.transform.position.y;
         float collideDistance = 1;
 
-        if (other.gameObject.CompareTag("Bullet") && xDistance > collideDistance && yDistance > collideDistance)
+        if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
             NetworkServer.Destroy(gameObject);
