@@ -5,11 +5,13 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
-    public GameObject bulletPrefab;
-    float speed = .2f;
-    float bulletSpeed = 75.0f;
-    float fireRate = 0.25f;
-    float lastShot = 0.0f;
+    public GameObject bulletPrefab, teleportBulletPrefab;
+    float speed = .15f;
+    float bulletSpeed = 20.0f;
+    float fireRate = 0.50f;
+    float lastShot = 0.0f, lastTeleportShot = 0.0f;
+    private bool canShootTeleport = true;
+    private GameObject teleportShot = null;
    
 
 	// Use this for initialization
@@ -33,26 +35,48 @@ public class PlayerController : NetworkBehaviour {
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
         transform.position += movement * speed;
 
+        Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        Vector2 curPos = new Vector2(transform.position.x, transform.position.y);
+        Vector2 direction = target - curPos;
+        direction.Normalize();
 
+        // Left Click
         if (Input.GetMouseButton(0))
         {
             if (Time.time > fireRate + lastShot)
-            {
-                Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-                Vector2 curPos = new Vector2(transform.position.x, transform.position.y);
-                Vector2 direction = target - curPos;
-                direction.Normalize();
-                Quaternion rotatio = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
+            {                
+                Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
                 GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, Quaternion.identity);
                 projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
                 lastShot = Time.time;
             } 
         }
 
-        if (Input.GetMouseButton(1))
+        // Right Click 
+        if (Input.GetMouseButtonDown(1))
         {
-
+            if (teleportShot != null)
+            {
+                gameObject.transform.position = teleportShot.transform.position;
+                teleportShot.GetComponent<TeleportBullet>().DestroyObject();
+                teleportShot = null;
+            }
+            else if (canShootTeleport)
+            {
+                Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
+                GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
+                projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
+                projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
+                canShootTeleport = false;
+                teleportShot = projectile;
+            }
         }
+    }
+
+    public void canShootTeleportBullet()
+    {
+        canShootTeleport = true;
+        teleportShot = null;
     }
 
     void FixedUpdate()
@@ -75,7 +99,7 @@ public class PlayerController : NetworkBehaviour {
         if (other.gameObject.CompareTag("Bullet") && xDistance > collideDistance && yDistance > collideDistance)
         {
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
         }
     }
 }

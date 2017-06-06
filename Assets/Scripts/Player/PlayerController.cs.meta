@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: b3da1c9b2f1ae2a4888071cdc711fa48
-timeCreated: 1496358288
+timeCreated: 1496546196
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bulletPrefab: {fileID: 1048656585395812, guid: cadaa4f889d6cde468531baa0636167a,
+      type: 2}
+  - teleportBulletPrefab: {fileID: 1682328635749816, guid: b49939ddb02d58d45b097d9375cd9043,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
