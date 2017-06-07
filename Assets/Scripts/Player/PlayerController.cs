@@ -46,7 +46,7 @@ public class PlayerController : NetworkBehaviour {
             if (Time.time > fireRate + lastShot)
             {                
                 Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
-                GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, transform.rotation *= Quaternion.Euler(0, 0, 270));
+                GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, transform.rotation);
 
                 Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
