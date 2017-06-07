@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50038681887759860}
   - component: {fileID: 114373591174308456}
   - component: {fileID: 61992659902901646}
+  - component: {fileID: 114089301828820834}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -88,6 +89,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.73576546, y: 0.39}
   m_EdgeRadius: 0
+--- !u!114 &114089301828820834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048656585395812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 202
+    i1: 218
+    i2: 164
+    i3: 248
+    i4: 137
+    i5: 214
+    i6: 205
+    i7: 228
+    i8: 104
+    i9: 83
+    i10: 27
+    i11: 170
+    i12: 6
+    i13: 54
+    i14: 22
+    i15: 122
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114373591174308456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +162,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -870430717
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e99cccdbce77cb241a96037b7ae9b5a0, type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}

@@ -78,6 +78,8 @@ public class PlayerController : NetworkBehaviour {
 					GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
 					projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
 					projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
+					projectile.GetComponent<TeleportBullet>().setDirection(direction);
+					Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
 					NetworkServer.Spawn (projectile);
 					canShootTeleport = false;
 					teleportShot = projectile;
