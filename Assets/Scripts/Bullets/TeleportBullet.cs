@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class TeleportBullet : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class TeleportBullet : MonoBehaviour
     public void DestroyObject()
     {
         shooter.GetComponent<PlayerController>().canShootTeleportBullet();
-        Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 
 }

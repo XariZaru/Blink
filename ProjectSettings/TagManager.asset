@@ -46,6 +46,9 @@ TagManager:
   - name: Map
     uniqueID: 1168309543
     locked: 0
+  - name: Wall
+    uniqueID: 979227139
+    locked: 0
   - name: Bullets
     uniqueID: 3424536579
     locked: 0

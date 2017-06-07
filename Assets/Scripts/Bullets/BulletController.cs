@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class BulletController : MonoBehaviour {
 
@@ -22,7 +23,7 @@ public class BulletController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Map"))
         {
-            Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
         }
     }
 
@@ -30,7 +31,7 @@ public class BulletController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Map"))
         {
-            Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
         }
     }
 
