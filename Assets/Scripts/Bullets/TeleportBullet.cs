@@ -12,7 +12,7 @@ public class TeleportBullet : MonoBehaviour
     private int distance = 50;
     private GameObject shooter;
     public static readonly float bullet_speed = 10f;
-	int bounces = 1;
+	int bounces = 2;
 
     // Use this for initialization
     void Start()
@@ -43,10 +43,10 @@ public class TeleportBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Map"))
-        {
-            DestroyObject();
-        }
+        //if (collision.gameObject.CompareTag("Map"))
+        //{
+        //    DestroyObject();
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -54,7 +54,6 @@ public class TeleportBullet : MonoBehaviour
 		if (collision.gameObject.CompareTag("Map") && bounces == 0)
         {
             DestroyObject();
-			bounces = 1;
         }
 		direction = Vector2.Reflect (direction, collision.contacts [0].normal);
 		gameObject.GetComponent<Rigidbody2D>().velocity = direction * bullet_speed;
