@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114381942595145086}
   m_Layer: 0
   m_Name: TeleportBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682328635749816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.104411, y: 2.357998, z: 0}
+  m_LocalPosition: {x: -14.225746, y: -2.5799236, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,19 +51,19 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682328635749816}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61220995830229224
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.011277676, y: -0.005638838}
@@ -81,7 +81,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1.33, y: 1.28}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -103,22 +103,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 0
-    i1: 0
-    i2: 0
-    i3: 0
-    i4: 0
-    i5: 0
-    i6: 0
-    i7: 0
-    i8: 0
-    i9: 0
-    i10: 0
-    i11: 0
-    i12: 0
-    i13: 0
-    i14: 0
-    i15: 0
+    i0: 180
+    i1: 153
+    i2: 57
+    i3: 221
+    i4: 176
+    i5: 45
+    i6: 88
+    i7: 212
+    i8: 91
+    i9: 9
+    i10: 125
+    i11: 147
+    i12: 117
+    i13: 205
+    i14: 144
+    i15: 67
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114886100901272086
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3d0e4b5e07a2246b47d6715150932c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounces: 2
 --- !u!212 &212196123185331558
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -164,11 +165,11 @@ SpriteRenderer:
   m_SortingLayerID: -870430717
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14cf5dfaa454edc4d99ea4d403c8afbf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33a42b10a0d56a34aacce1eb4701f90c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.33, y: 1.28}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
