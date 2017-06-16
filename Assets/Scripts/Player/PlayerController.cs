@@ -12,7 +12,7 @@ public class PlayerController : NetworkBehaviour {
     float lastShot = 0.0f, lastTeleportShot = 0.0f;
     private bool canShootTeleport = true;
 	private bool teleporting = false, done = true;
-    private GameObject teleportShot = null;
+    private GameObject teleportShot = null, teleportShotCopy = null;
 	private float t = 0;
 	Vector3 startPosition, target;
 	float timeToReachTarget = 2;
@@ -100,8 +100,12 @@ public class PlayerController : NetworkBehaviour {
     }
 
 	private void startTeleport() {
-		SetDestination (teleportShot.transform.position, .25f);
-		teleportShot.GetComponent<TeleportBullet> ().DestroyObject ();
+		try {
+			SetDestination (teleportShot.transform.position, .25f);
+			teleportShot.GetComponent<TeleportBullet> ().DestroyObject ();
+		} catch (System.Exception e) {
+			
+		}
 	}
 
 	public void SetDestination(Vector3 destination, float time)
