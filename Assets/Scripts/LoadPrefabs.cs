@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Loading : MonoBehaviour {
+public class LoadPrefabs : MonoBehaviour {
 
-	GameObject bullet, teleportBullet;
+	public GameObject bullet, teleportBullet;
 
 	// Use this for initialization
 	void Start () {

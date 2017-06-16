@@ -12,7 +12,11 @@ public class PlayerController : NetworkBehaviour {
     float lastShot = 0.0f, lastTeleportShot = 0.0f;
     private bool canShootTeleport = true;
 	private bool teleporting = false, done = true;
-    private GameObject teleportShot = null, teleportShotCopy = null;
+
+	[SyncVar]
+	private GameObject teleportShot = null;
+
+	private GameObject teleportShotCopy = null;
 	private float t = 0;
 	Vector3 startPosition, target;
 	float timeToReachTarget = 2;
@@ -50,12 +54,7 @@ public class PlayerController : NetworkBehaviour {
 			// Left Click
 			if (Input.GetMouseButton (0)) {
 				if (Time.time > fireRate + lastShot) {                
-					Quaternion rotation = Quaternion.Euler (0, 0, Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg + 90);
-					GameObject projectile = (GameObject)Instantiate (bulletPrefab, curPos, transform.rotation);
-					NetworkServer.Spawn (projectile);
-					Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
-
-					projectile.GetComponent<Rigidbody2D> ().velocity = direction * bulletSpeed;
+					CmdSpawnBullet (direction);
 					lastShot = Time.time;
 				} 
 			}
@@ -74,15 +73,8 @@ public class PlayerController : NetworkBehaviour {
 				}
 				else if (canShootTeleport)
 				{
-					Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
-					GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
-					projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
-					projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
-					projectile.GetComponent<TeleportBullet>().setDirection(direction);
-					Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
-					NetworkServer.Spawn (projectile);
+					CmdSpawnTeleportBullet (direction);
 					canShootTeleport = false;
-					teleportShot = projectile;
 				}
 			}
 		
@@ -106,6 +98,30 @@ public class PlayerController : NetworkBehaviour {
 		} catch (System.Exception e) {
 			
 		}
+	}
+
+	[Command]
+	public void CmdSpawnBullet(Vector2 direction) {
+		Vector2 curPos = new Vector2 (transform.position.x, transform.position.y);
+		Quaternion rotation = Quaternion.Euler (0, 0, Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg + 90);
+		GameObject projectile = (GameObject)Instantiate (bulletPrefab, curPos, transform.rotation);
+		Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
+
+		projectile.GetComponent<Rigidbody2D> ().velocity = direction * bulletSpeed;
+		NetworkServer.Spawn (projectile);
+	}
+
+	[Command]
+	public void CmdSpawnTeleportBullet(Vector2 direction) {
+		Vector2 curPos = new Vector2 (transform.position.x, transform.position.y);
+		Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
+		GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
+		projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
+		projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
+		projectile.GetComponent<TeleportBullet>().setDirection(direction);
+		Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
+		NetworkServer.Spawn (projectile);
+		teleportShot = projectile;
 	}
 
 	public void SetDestination(Vector3 destination, float time)
