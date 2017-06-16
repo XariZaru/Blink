@@ -155,7 +155,7 @@ public class PlayerController : NetworkBehaviour {
         float xDistance = other.gameObject.transform.position.x - gameObject.transform.position.x;
         float yDistance = other.gameObject.transform.position.y - gameObject.transform.position.y;
 
-        if (other.gameObject.CompareTag("Bullet"))
+		if (other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<BulletController>().getOwner() != gameObject)
         {
             NetworkServer.Destroy(other.gameObject);
             NetworkServer.Destroy(gameObject);

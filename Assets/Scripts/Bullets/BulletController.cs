@@ -9,6 +9,9 @@ public class BulletController : MonoBehaviour {
     Vector2 currentPosition;
     private int distance = 50;
 
+	[SyncVar]
+	GameObject owner;
+
 	// Use this for initialization
 	void Start () {
         startPosition = new Vector2(transform.position.x, transform.position.y);
@@ -26,6 +29,14 @@ public class BulletController : MonoBehaviour {
             NetworkServer.Destroy(gameObject);
         }
     }
+
+	public void setOwner(GameObject owner) {
+		this.owner = owner;
+	}
+
+	public GameObject getOwner() {
+		return owner;
+	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
