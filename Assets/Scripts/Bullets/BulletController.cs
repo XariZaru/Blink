@@ -31,7 +31,7 @@ public class BulletController : MonoBehaviour {
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);
-			GameObject.Find ("Scoreboard").GetComponent<Scoreboard> ().addScore ();
+			GameObject.Find ("Text").GetComponent<Scoreboard> ().addScore ();
         }
     }
 }

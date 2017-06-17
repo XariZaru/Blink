@@ -19,13 +19,14 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        scoretext.gameObject.GetComponent<Text>().text = score.ToString();
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 		if (player == null)
 			player = GameObject.Find ("Player");
+
         transform.right = player.transform.position - transform.position;
         var direction = transform.right;
 
