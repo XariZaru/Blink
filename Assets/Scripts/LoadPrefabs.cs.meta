@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 2f4364bdc16ba23459ca400bc58ae11f
-timeCreated: 1497644896
+timeCreated: 1497683460
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bullet: {fileID: 1048656585395812, guid: cadaa4f889d6cde468531baa0636167a, type: 2}
+  - teleportBullet: {fileID: 1682328635749816, guid: b49939ddb02d58d45b097d9375cd9043,
+      type: 2}
+  - enemy: {fileID: 1678925202284986, guid: f252c330571f29c45adf0b0ed56443aa, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

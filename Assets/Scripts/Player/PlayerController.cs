@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
                     Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                     GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, rotation);
                     Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
+					projectile.GetComponent<BulletController> ().owner = gameObject;
                     projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
                     lastShot = Time.time;
                 }

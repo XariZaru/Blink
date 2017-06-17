@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Server : NetworkManager {
+public class Server : MonoBehaviour {
     
-    public GameObject player;
+	public GameObject player;
+	public GameObject enemy;
 
 
 	// Use this for initialization
@@ -17,7 +18,6 @@ public class Server : NetworkManager {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
     void RegisterPrefabs()

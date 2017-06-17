@@ -24,7 +24,8 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (player == null)
+			player = GameObject.Find ("Player");
         transform.right = player.transform.position - transform.position;
         var direction = transform.right;
 
@@ -47,11 +48,15 @@ public class EnemyController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		/*
 		if (other.gameObject.CompareTag("Bullet"))
 		{
-            score += 1;
-            scoretext.gameObject.GetComponent<Text>().text = score.ToString();
+			GameObject score_board = GameObject.Find ("Scoreboard");
+			score_board.GetComponent<Scoreboard> ().addScore ();
+            //score += 1;
+            //scoretext.gameObject.GetComponent<Text>().text = score.ToString();
 			Destroy(gameObject);
 		}
+		*/
 	}
 }

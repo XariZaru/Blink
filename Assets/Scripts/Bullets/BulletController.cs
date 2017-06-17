@@ -27,10 +27,11 @@ public class BulletController : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
+		if (collision.gameObject.CompareTag("Enemy") && owner.Equals(GameObject.FindGameObjectWithTag("Player")))
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);
+			GameObject.Find ("Scoreboard").GetComponent<Scoreboard> ().addScore ();
         }
     }
 }
