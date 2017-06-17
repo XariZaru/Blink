@@ -81,10 +81,12 @@
     <Compile Include="Assets\Scripts\Bullets\BulletController.cs" />
     <Compile Include="Assets\Scripts\Bullets\TeleportBullet.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\EndScene2.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\LoadPrefabs.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\Server.cs" />
+    <Compile Include="Assets\Scripts\TitleScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

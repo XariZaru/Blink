@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class EnemyController : MonoBehaviour {
     public float speed;
     public int distance;
+    public int score = 0;
     float bulletSpeed = 20.0f;
     float fireRate = 1f;
     float lastShot = 0.0f;
 
     public GameObject player;
     public GameObject bulletPrefab;
+    public Text scoretext;
 
 	// Use this for initialization
 	void Start () {
-	}
+        scoretext.gameObject.GetComponent<Text>().text = score.ToString();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,7 +30,6 @@ public class EnemyController : MonoBehaviour {
 
         if ((transform.position - player.transform.position).sqrMagnitude > distance)
         {
-            Debug.Log(player.transform.position);
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
 
@@ -46,9 +49,9 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag("Bullet"))
 		{
-			SceneManager.LoadScene ("PlayerEnd");
+            score += 1;
+            scoretext.gameObject.GetComponent<Text>().text = score.ToString();
 			Destroy(gameObject);
-
 		}
 	}
 }

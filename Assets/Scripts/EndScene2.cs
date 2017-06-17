@@ -26,6 +26,5 @@ public class EndScene2 : MonoBehaviour {
 		if (GUI.Button (new Rect (510, 360, 120, 25), "Main Menu"))
 			SceneManager.LoadScene ("Menu");
 
-
 	}
 }
