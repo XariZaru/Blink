@@ -167,7 +167,6 @@ public class PlayerController : MonoBehaviour {
         {
 			SceneManager.LoadScene ("PlayerEnd2");
             Destroy(gameObject);
-
         }
     }
 }
