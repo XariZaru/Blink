@@ -23,16 +23,13 @@ public class BulletController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Map"))
         {
-            NetworkServer.Destroy(gameObject);
+            Destroy(gameObject);
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Map"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            NetworkServer.Destroy(gameObject);
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
-
 }

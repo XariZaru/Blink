@@ -80,6 +80,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bullets\BulletController.cs" />
     <Compile Include="Assets\Scripts\Bullets\TeleportBullet.cs" />
+    <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\LoadPrefabs.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\Server.cs" />

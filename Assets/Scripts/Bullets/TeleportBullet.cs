@@ -67,6 +67,6 @@ public class TeleportBullet : MonoBehaviour
     public void DestroyObject()
     {
         shooter.GetComponent<PlayerController>().canShootTeleportBullet();
-        NetworkServer.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

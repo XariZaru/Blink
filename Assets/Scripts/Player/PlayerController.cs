@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerController : NetworkBehaviour {
+public class PlayerController : MonoBehaviour {
 
     public GameObject bulletPrefab, teleportBulletPrefab;
     float speed = .15f;
@@ -13,7 +13,7 @@ public class PlayerController : NetworkBehaviour {
     private bool canShootTeleport = true;
 	private bool teleporting = false, done = true;
 
-	[SyncVar]
+	//[SyncVar]
 	private GameObject teleportShot = null;
 
 	private GameObject teleportShotCopy = null;
@@ -29,9 +29,6 @@ public class PlayerController : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!hasAuthority)
-            return;
-
 
 		// Teleporting freezes the player during the duration of the teleport
 		if (!teleporting) {
@@ -53,28 +50,39 @@ public class PlayerController : NetworkBehaviour {
 
 			// Left Click
 			if (Input.GetMouseButton (0)) {
-				if (Time.time > fireRate + lastShot) {                
-					CmdSpawnBullet (direction);
-					lastShot = Time.time;
-				} 
-			}
+                if (Time.time > fireRate + lastShot)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+                    GameObject projectile = (GameObject)Instantiate(bulletPrefab, curPos, rotation);
+                    Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
-			// Right Click triggers teleport and shooting special teleport bullets
-			if (Input.GetMouseButtonDown(1))
+                    projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+                    lastShot = Time.time;
+                }
+            }
+
+            // Right Click triggers teleport and shooting special teleport bullets
+            if (Input.GetMouseButtonDown(1))
 			{
 				if (teleportShot != null && !teleporting)
 				{
 					teleporting = true;
 					teleportShot.GetComponent<Rigidbody2D> ().velocity = new Vector2(0, 0);
 					Invoke ("startTeleport", .1f);
+
+
 					//gameObject.transform.position = teleportShot.transform.position;
 					//teleportShot.GetComponent<TeleportBullet>().DestroyObject();
 					//teleportShot = null;
 				}
 				else if (canShootTeleport)
 				{
-					CmdSpawnTeleportBullet (direction);
-					canShootTeleport = false;
+                    GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
+                    projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
+                    projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
+                    projectile.GetComponent<TeleportBullet>().setDirection(direction);
+                    Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                    teleportShot = projectile; canShootTeleport = false;
 				}
 			}
 		
@@ -100,31 +108,32 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-	[Command]
-	public void CmdSpawnBullet(Vector2 direction) {
-		Vector2 curPos = new Vector2 (transform.position.x, transform.position.y);
-		Quaternion rotation = Quaternion.Euler (0, 0, Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg + 90);
-		GameObject projectile = (GameObject)Instantiate (bulletPrefab, curPos, transform.rotation);
-		Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
+    //[Command]
+    //public void CmdSpawnBullet(Vector2 direction) {
+    //	Vector2 curPos = new Vector2 (transform.position.x, transform.position.y);
+    //	Quaternion rotation = Quaternion.Euler (0, 0, Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg + 90);
+    //	GameObject projectile = (GameObject)Instantiate (bulletPrefab, curPos, transform.rotation);
+    //	Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
 
-		projectile.GetComponent<Rigidbody2D> ().velocity = direction * bulletSpeed;
-		NetworkServer.Spawn (projectile);
-	}
+    //	projectile.GetComponent<Rigidbody2D> ().velocity = direction * bulletSpeed;
+    //	NetworkServer.Spawn (projectile);
+    //}
 
-	[Command]
-	public void CmdSpawnTeleportBullet(Vector2 direction) {
-		Vector2 curPos = new Vector2 (transform.position.x, transform.position.y);
-		Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
-		GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
-		projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
-		projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
-		projectile.GetComponent<TeleportBullet>().setDirection(direction);
-		Physics2D.IgnoreCollision (projectile.GetComponent<Collider2D> (), GetComponent<Collider2D> ());
-		NetworkServer.Spawn (projectile);
-		teleportShot = projectile;
-	}
+    //[Command]
+    //public void CmdSpawnTeleportBullet(Vector2 direction)
+    //{
+    //    Vector2 curPos = new Vector2(transform.position.x, transform.position.y);
+    //    Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90);
+    //    GameObject projectile = (GameObject)Instantiate(teleportBulletPrefab, curPos, Quaternion.identity);
+    //    projectile.GetComponent<Rigidbody2D>().velocity = direction * TeleportBullet.bullet_speed;
+    //    projectile.GetComponent<TeleportBullet>().setShooter(gameObject);
+    //    projectile.GetComponent<TeleportBullet>().setDirection(direction);
+    //    Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    //    NetworkServer.Spawn(projectile);
+    //    teleportShot = projectile;
+    //}
 
-	public void SetDestination(Vector3 destination, float time)
+    public void SetDestination(Vector3 destination, float time)
 	{
 		done = false;
 		t = 0;
@@ -152,13 +161,10 @@ public class PlayerController : NetworkBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        float xDistance = other.gameObject.transform.position.x - gameObject.transform.position.x;
-        float yDistance = other.gameObject.transform.position.y - gameObject.transform.position.y;
-
         if (other.gameObject.CompareTag("Bullet"))
         {
-            NetworkServer.Destroy(other.gameObject);
-            NetworkServer.Destroy(gameObject);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
 }

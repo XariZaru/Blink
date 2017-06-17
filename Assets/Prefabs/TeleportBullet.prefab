@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 50169347904501420}
   - component: {fileID: 61220995830229224}
   - component: {fileID: 114886100901272086}
-  - component: {fileID: 114381942595145086}
   m_Layer: 0
   m_Name: TeleportBullet
   m_TagString: Bullet
@@ -38,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682328635749816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.225746, y: -2.5799236, z: 0}
+  m_LocalPosition: {x: 20.117466, y: -7.7989964, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,38 +88,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7808752, y: 0.78470707}
   m_EdgeRadius: 0
---- !u!114 &114381942595145086
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1682328635749816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 180
-    i1: 153
-    i2: 57
-    i3: 221
-    i4: 176
-    i5: 45
-    i6: 88
-    i7: 212
-    i8: 91
-    i9: 9
-    i10: 125
-    i11: 147
-    i12: 117
-    i13: 205
-    i14: 144
-    i15: 67
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114886100901272086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,7 +132,7 @@ SpriteRenderer:
   m_SortingLayerID: -870430717
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 33a42b10a0d56a34aacce1eb4701f90c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9c69d250b3ec924794c46e5927dc6c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
