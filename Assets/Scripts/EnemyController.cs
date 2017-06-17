@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class EnemyController : MonoBehaviour {
     public float speed;
@@ -14,7 +16,6 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -40,4 +41,14 @@ public class EnemyController : MonoBehaviour {
         }
 
     }
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.CompareTag("Bullet"))
+		{
+			SceneManager.LoadScene ("PlayerEnd");
+			Destroy(gameObject);
+
+		}
+	}
 }

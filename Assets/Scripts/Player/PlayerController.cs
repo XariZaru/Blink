@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour {
 
@@ -24,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {        
-
+		GameObject test = GameObject.Find ("MainCamera");
 	}
 	
 	// Update is called once per frame
@@ -163,8 +165,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            Destroy(other.gameObject);
+			SceneManager.LoadScene ("PlayerEnd2");
             Destroy(gameObject);
+
         }
     }
 }
