@@ -1,12 +1,12 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
+﻿<Properties StartupItem="Blink.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EndScene2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Server.cs">
     <Files>
-      <File FileName="Assets\Scripts\TitleScreen.cs" Line="28" Column="24" />
-      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="171" Column="39" />
-      <File FileName="Assets\Scripts\EnemyController.cs" Line="52" Column="38" />
-      <File FileName="Assets\Scripts\EndScene.cs" Line="4" Column="18" />
-      <File FileName="Assets\Scripts\EndScene2.cs" Line="7" Column="23" />
+      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="55" Column="6" />
+      <File FileName="Assets\Scripts\Bullets\BulletController.cs" Line="11" Column="2" />
+      <File FileName="Assets\Scripts\Bullets\TeleportBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LoadPrefabs.cs" Line="8" Column="9" />
+      <File FileName="Assets\Scripts\Player\Server.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

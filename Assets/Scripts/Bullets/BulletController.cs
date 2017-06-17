@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour {
     Vector2 startPosition;
     Vector2 currentPosition;
     private int distance = 50;
+	public GameObject owner = null;
 
 	// Use this for initialization
 	void Start () {
